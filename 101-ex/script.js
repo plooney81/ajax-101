@@ -27,16 +27,24 @@ function breedSelectFetch(breed){
             changePic(data.message);
         })
 }
-
+let numb = 0;
 function changePic(address){
     const pic = document.querySelector('.carousel-inner');
-
-    
-    pic.innerHTML = `
+    let text = '';
+    if (numb === 0){
+        text = `
         <div class="carousel-item active">
             <img src="${address}" class="d-block w-100" id="doggoPic">
         </div>`
+    }else{
+        text = `
+        <div class="carousel-item">
+            <img src="${address}" class="d-block w-100" id="doggoPic">
+        </div>`
+    }
+    pic.innerHTML += text;
     changeButtonText(2);
+    numb ++;
 }
 
 function doggoFetch(){
@@ -54,10 +62,10 @@ function changeButtonText(param){
     let dogButton = document.querySelector('#doggoBut');
 
     if(param === 1){
-        dogButton.innerHTML = "Generating Doggo............";
+        dogButton.innerHTML = "Generating Doggos............";
         console.log("Changed");
     }else{
-        dogButton.innerHTML = "Generate Doggo";
+        dogButton.innerHTML = "Generate Doggos";
 
     }
 }
