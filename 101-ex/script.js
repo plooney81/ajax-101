@@ -1,33 +1,10 @@
-function changePic(address){
-    const pic = document.querySelector('.carousel-inner');
-
-    
-    pic.innerHTML += `
-        <div class="carousel-item">
-            <img src="${address}" class="d-block w-100" id="doggoPic">
-        </div>`
-    changeButtonText(2);
-}
-
 function addDropDownItems(someArray){
     const dropMenu = document.querySelector('#breedSelect');
     let newDrop = '';
     for (let index = 0; index < someArray.length; index++){
         newDrop += `<option>${someArray[index]}</option>`
     }
-    dropMenu.innerHTML += newDrop;
-}
-
-
-function doggoFetch(){
-    fetch("https://dog.ceo/api/breeds/image/random")
-    .then((response)=>{
-        return response.json();
-    })
-    .then((data)=>{
-        changePic(data.message);
-    });
-    
+    dropMenu.innerHTML = newDrop;
 }
 
 function breedFetch(){
@@ -38,6 +15,38 @@ function breedFetch(){
         .then((data)=>{
             addDropDownItems(data.message);
         })
+}
+
+function breedSelectFetch(breed){
+    fetch(`https://dog.ceo/api/${breed}/image/random`)
+        .then((response)=>{
+            return response.json();
+        })
+        .then((data)=>{
+
+        })
+}
+
+function changePic(address){
+    const pic = document.querySelector('.carousel-inner');
+
+    
+    pic.innerHTML = `
+        <div class="carousel-item active">
+            <img src="${address}" class="d-block w-100" id="doggoPic">
+        </div>`
+    changeButtonText(2);
+}
+
+function doggoFetch(){
+    fetch("https://dog.ceo/api/breeds/image/random")
+    .then((response)=>{
+        return response.json();
+    })
+    .then((data)=>{
+        changePic(data.message);
+    });
+    
 }
 
 function changeButtonText(param){
@@ -62,3 +71,9 @@ document.addEventListener('click', function(e){
 window.addEventListener('DOMContentLoaded', function() {
     breedFetch();
 });
+
+// about me isn't required, its a textarea that has a max length of 250 characters
+document.querySelector('#breedSelect').addEventListener('change', (e)=>{
+    const breed = e.target.value;
+    breedSelectFetch(breed);
+})
