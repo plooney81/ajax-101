@@ -1,3 +1,9 @@
+function updateProgressBar(progress){
+    const progBar = document.querySelector('.progress-bar');
+
+    progBar.setAttribute('style', `width: ${progress}%;`);
+}
+
 function addDropDownItems(someArray){
     const dropMenu = document.querySelector('#breedSelect');
     let newDrop = '';
@@ -47,7 +53,7 @@ function changePic(address){
     numb ++;
 }
 
-function doggoFetch(){
+async function doggoFetch(){
     fetch("https://dog.ceo/api/breeds/image/random")
     .then((response)=>{
         return response.json();
