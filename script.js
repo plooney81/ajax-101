@@ -10,6 +10,6 @@
 // request.send();
 
 // Fetch API method
-fetch("./sample.txt").then((response)=>{
-    console.log(response);
-})
+fetch("./sample.txt")
+    .then((response)=>{console.log(response)})
+    .then(data => console.log(data));
