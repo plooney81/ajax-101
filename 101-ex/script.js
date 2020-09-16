@@ -10,11 +10,12 @@ function changePic(address){
 }
 
 function addDropDownItems(someArray){
-    const dropMenu = document.querySelector('.dropdown-menu');
-    let newDrop;
+    const dropMenu = document.querySelector('#breedSelect');
+    let newDrop = '';
     for (let index = 0; index < someArray.length; index++){
-        
+        newDrop += `<option>${someArray[index]}</option>`
     }
+    dropMenu.innerHTML += newDrop;
 }
 
 
@@ -31,7 +32,7 @@ function doggoFetch(){
 
 function breedFetch(){
     fetch("https://dog.ceo/api/breeds/list")
-        .then((respones)=>{
+        .then((response)=>{
             return response.json();
         })
         .then((data)=>{
@@ -59,5 +60,5 @@ document.addEventListener('click', function(e){
 });
 
 window.addEventListener('DOMContentLoaded', function() {
-
+    breedFetch();
 });
