@@ -1,7 +1,20 @@
 function changePic(address){
-    const pic = document.querySelector('#doggoPic');
-    pic.setAttribute('src', `${address}`);
+    const pic = document.querySelector('.carousel-inner');
+
+    
+    pic.innerHTML += `
+        <div class="carousel-item">
+            <img src="${address}" class="d-block w-100" id="doggoPic">
+        </div>`
     changeButtonText(2);
+}
+
+function addDropDownItems(someArray){
+    const dropMenu = document.querySelector('.dropdown-menu');
+    let newDrop;
+    for (let index = 0; index < someArray.length; index++){
+        
+    }
 }
 
 
@@ -14,6 +27,16 @@ function doggoFetch(){
         changePic(data.message);
     });
     
+}
+
+function breedFetch(){
+    fetch("https://dog.ceo/api/breeds/list")
+        .then((respones)=>{
+            return response.json();
+        })
+        .then((data)=>{
+            addDropDownItems(data.message);
+        })
 }
 
 function changeButtonText(param){
@@ -33,4 +56,8 @@ document.addEventListener('click', function(e){
         changeButtonText(1);
         doggoFetch();
     }
+});
+
+window.addEventListener('DOMContentLoaded', function() {
+
 });

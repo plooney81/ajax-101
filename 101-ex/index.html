@@ -14,19 +14,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container justify-content-center align-items-center" style="width:800px ; height:800px;">
         <div class="row justify-content-center align-items-center">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                      <img src="#" class="d-block w-100" id="doggoPic">
+                      <!-- <img src="#" class="d-block w-100" id="doggoPic"> -->
                   </div>
                 </div>
               </div>
         </div>
-          <div class="row justify-content-center align-items-center">
+        <form>
+        <div class="row justify-content-center align-items-center mt-2">
               <button type="button" class="btn btn-primary" id='doggoBut'>Generate Doggo</button>
-          </div>
+        </div>
+        
+            <label for="exampleFormControlSelect2">Choose Dog Breed: </label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </form>
+
     </div>
 </body>
 <script src="./script.js"></script>
