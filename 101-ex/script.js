@@ -18,12 +18,13 @@ function breedFetch(){
 }
 
 function breedSelectFetch(breed){
-    fetch(`https://dog.ceo/api/${breed}/image/random`)
+    fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
         .then((response)=>{
             return response.json();
         })
         .then((data)=>{
-
+            console.log(data.message);
+            changePic(data.message);
         })
 }
 
