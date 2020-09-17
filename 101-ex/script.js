@@ -65,6 +65,7 @@ function doggoFetch(){
     // progress bar logic attempt, unfortunately our if(e.lengthComputable) is evaluating to false
     // this probably means that the server never sent a content-length header in the response...so we don't have a way of getting
     // the total length for our progress bar logic.
+    // https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent/total
     let client = new XMLHttpRequest()
     client.addEventListener('progress', (e)=>{
         if(e.lengthComputable){
