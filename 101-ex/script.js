@@ -53,14 +53,36 @@ function changePic(address){
     numb ++;
 }
 
-async function doggoFetch(){
-    fetch("https://dog.ceo/api/breeds/image/random")
-    .then((response)=>{
-        return response.json();
+function doggoFetch(){
+    // fetch("https://dog.ceo/api/breeds/image/random")
+    // .then((response)=>{
+    //     return response.json();
+    // })
+    // .then((data)=>{
+    //     changePic(data.message);
+    // });
+
+    // progress bar logic attempt, unfortunately our if(e.lengthComputable) is evaluating to false
+    // this probably means that the server never sent a content-length header in the response...so we don't have a way of getting
+    // the total length for our progress bar logic.
+    let client = new XMLHttpRequest()
+    client.addEventListener('progress', (e)=>{
+        if(e.lengthComputable){
+            console.log(e.type, e.loaded, e.total);
+            let percentComplete = (e.loaded / e.total)*100;
+            updateProgressBar(percentComplete);
+        }
     })
-    .then((data)=>{
-        changePic(data.message);
-    });
+    client.open("GET", "https://dog.ceo/api/breeds/image/random")
+
+    client.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+           changePic(JSON.parse(this.responseText).message);
+        }
+    }
+
+    client.send()
+    
     
 }
 
